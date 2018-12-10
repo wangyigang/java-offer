@@ -1,20 +1,25 @@
 package com.hdfs.test;
 
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
 import org.junit.Test;
 
+import java.io.IOException;
+
+
 public class TestMapReduce {
-    /*
-    mapreduce详细工作流程：
-    1.对待处理文本
-    2进行分片，以128M进行分割
-    3.提交切片信息：job.split  jar  xml
-    4.计算mapTask数量（由rm启动Mr appmaster ）
-    5.每个maptask进行文本处理，默认使用textInputFormat
-    6.
-     */
+
     @Test
     public void  test(){
+        //获取配置信息
+        Configuration conf = new Configuration();
+        try {
+            FileSystem fileSystem = FileSystem.get(conf);
+            fileSystem.mkdirs(new Path("/1.txt"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
-
 }
