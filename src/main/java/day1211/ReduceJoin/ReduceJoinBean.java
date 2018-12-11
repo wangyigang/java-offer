@@ -60,8 +60,8 @@ public class ReduceJoinBean implements WritableComparable<ReduceJoinBean> {
 
     @Override
     public String toString() {
-        return  id + "\t" + pid +"\t"+ amount +
-                "\t" + pname ;
+        return  id + "\t" + pname +
+                "\t" + amount;
     }
 
     /*
