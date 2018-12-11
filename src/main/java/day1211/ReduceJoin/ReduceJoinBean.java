@@ -72,7 +72,7 @@ public class ReduceJoinBean implements WritableComparable<ReduceJoinBean> {
     public int compareTo(ReduceJoinBean o) {
         int compare = this.pid.compareTo(o.getPid());
         if(compare == 0){
-            return this.pname.compareTo(o.pname);
+            return o.pname.compareTo(this.pname);
         }
         return compare;
     }
