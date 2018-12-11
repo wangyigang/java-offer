@@ -23,6 +23,7 @@ public class MapJoinDriver {
             job.setMapperClass(MapJoinMapper.class);
             job.setNumReduceTasks(0);
             //设置缓存
+            //TODO
             job.addCacheFile(new URI("file:///d:/input/mapjoin/pd.txt"));
             //设置输出类型
             job.setMapOutputKeyClass(Text.class);
