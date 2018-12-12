@@ -6,6 +6,7 @@ import org.apache.hadoop.io.WritableComparator;
 /*
 自定义分组
  */
+@SuppressWarnings("all")
 public class ReducejoinGroupingComparator extends WritableComparator {
     protected ReducejoinGroupingComparator() {
         super(ReduceJoinBean.class, true);
