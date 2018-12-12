@@ -15,7 +15,7 @@ public class TogetherFriendReducer extends Reducer<Text, Text, Text, Text> {
     protected void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
         sb.setLength(0);
         for (Text value : values) {
-            sb.append(value);
+            sb.append(value).append(",");
         }
         valueText.set(sb.toString());
         context.write(key, valueText);
