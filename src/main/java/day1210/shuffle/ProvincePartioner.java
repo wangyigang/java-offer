@@ -3,7 +3,7 @@ package day1210.shuffle;
 import day1210.day1208.FlowBean;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Partitioner;
-
+@SuppressWarnings("all")
 public class ProvincePartioner extends Partitioner<Text, FlowBean> {
 
     @Override
