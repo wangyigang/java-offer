@@ -185,7 +185,6 @@ public class TestReflection {
     /*
     获取修饰符：
     getModifierd():获取一个类或其他成员的访问修饰符
-
      */
     @Test
     public  void test() throws Exception {
