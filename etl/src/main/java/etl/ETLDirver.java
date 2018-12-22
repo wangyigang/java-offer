@@ -45,6 +45,8 @@ public class ETLDirver  implements Tool {
         if(fileSystem.exists(path)){
             //如果存在删除
             fileSystem.delete(path, true);//递归删除
+        }else{
+            throw new RuntimeException(outputString+"不存在");
         }
         FileOutputFormat.setOutputPath(job, path);
     }
