@@ -29,6 +29,7 @@ public class Test765 {
         int[] arr = new int[]{2,0,5,4,3,1}; //1 ==>1和2进行交换
         System.out.println(minSwapsCouples(arr));
     }
+
     public int minSwapsCouples(int[] row){
         int sum=0;
         int mate = 0; //记录对应的配偶
@@ -59,11 +60,6 @@ public class Test765 {
         }
         return count;
     }
-
-
-
-
-
 
 //    public  int minSwapsCouples(int[] row){
 //        int sum=0;
