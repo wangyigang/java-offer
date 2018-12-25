@@ -34,29 +34,43 @@ public class Test206 {
             listNode = listNode.next;
         }
     }
-    /*
-    递归方式进行倒置链表
-     */
-    public ListNode reverseList(ListNode head) {
-        //递归结束条件
-        if(head.next == null){
-            return head;//返回最后一个值
+    //递归方式进行倒置链表
+    public ListNode reverseList(ListNode head){
+        //防御型编程  递归结束条件
+        if(head == null || head.next == null){
+            return head;
         }
-        //
         ListNode next = head.next;
-        //返回结果是后一个值
-        ListNode node = reverseList(next);
+        ListNode newHead = reverseList(next);
 
-        //递归结束的时候最后一个值是返回的第一个
-        head.next = null;
-        next.next = head;
+        head.next = null; // 先将原来的连接关系置空
+        next.next = head; // 递归每次的head都是next的前一个
 
-        return node;
-
+        return newHead;
     }
 
 
 
+
+
+//    //递归方式进行倒置链表
+//    public ListNode reverseList(ListNode head){
+//        //防御型编程
+//        if(head == null || head.next==null){ //或递归结束条件
+//            return head;
+//        }
+//        ListNode n = head.next; //n是下一个节点
+//        ListNode node = reverseList(n);//node是最后一个节点
+//        //最后一个节点
+//        head.next = null;//head为2
+//        n.next = head; // head在递归中时前一个
+//        return node;
+//    }
+
+
+    /*
+    递归方式进行倒置链表
+     */
 //    public ListNode reverseList(ListNode head) {
 //        //递归方式
 //        if(head.next == null){
