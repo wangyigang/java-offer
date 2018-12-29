@@ -6,7 +6,7 @@ public class TestUDF extends UDF {
 
     public String evaluate (final String s) {
         if(s==null){
-            return null;
+            return  null;
         }
         return s.toLowerCase();
     }
