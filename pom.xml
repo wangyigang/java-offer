@@ -15,6 +15,7 @@
         <module>mysource</module>
         <module>mysink</module>
         <module>azkaban</module>
+        <module>kafka</module>
     </modules>
 
 

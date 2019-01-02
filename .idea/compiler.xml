@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="azkaban" />
         <module name="etl" />
+        <module name="kafka" />
         <module name="mysink" />
         <module name="mysource" />
         <module name="udf" />
