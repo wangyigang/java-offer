@@ -18,6 +18,7 @@
         <module>kafka</module>
         <module>hase</module>
         <module>hdfs-hive</module>
+        <module>weibo</module>
 
     </modules>
 

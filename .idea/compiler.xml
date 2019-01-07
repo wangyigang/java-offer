@@ -13,9 +13,11 @@
         <module name="mysink" />
         <module name="mysource" />
         <module name="udf" />
+        <module name="weibo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="hdfshive" target="1.8" />
       <module name="hfs" target="1.8" />
       <module name="Spring" target="1.8" />
     </bytecodeTargetLevel>
