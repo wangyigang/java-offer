@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="azkaban" />
         <module name="etl" />
+        <module name="hbase" />
         <module name="kafka" />
         <module name="mysink" />
         <module name="mysource" />
@@ -15,7 +16,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="hbase" target="1.8" />
+      <module name="hfs" target="1.8" />
       <module name="Spring" target="1.8" />
     </bytecodeTargetLevel>
   </component>

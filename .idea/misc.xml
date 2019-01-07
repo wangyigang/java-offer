@@ -12,6 +12,7 @@
       <set>
         <option value="$PROJECT_DIR$/Spring/pom.xml" />
         <option value="$PROJECT_DIR$/hbase/pom.xml" />
+        <option value="$PROJECT_DIR$/hdfs-hive/hfs/pom.xml" />
       </set>
     </option>
   </component>

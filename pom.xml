@@ -16,10 +16,9 @@
         <module>mysink</module>
         <module>azkaban</module>
         <module>kafka</module>
-        <module>hbase</module>
-        <module>hbase</module>
-        <module>hbase</module>
-        <module>hbase</module>
+        <module>hase</module>
+        <module>hdfs-hive</module>
+
     </modules>
 
 
