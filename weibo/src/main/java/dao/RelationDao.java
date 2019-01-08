@@ -11,6 +11,7 @@ import java.util.List;
 @SuppressWarnings("all")
 public class RelationDao extends  BaseDao {
 
+
     /**
      * 关注明星
      * @param fanscode
@@ -95,8 +96,36 @@ public class RelationDao extends  BaseDao {
         List<String> list = new ArrayList<>();
         //返回fans的list
         for (Cell cell : result.rawCells()) {
-            list.add(CellUtil.cloneValue(cell).toString());
+            list.add(Bytes.toString(CellUtil.cloneRow(cell)));
         }
+
+        //关闭资源
+        table.close();
+        connection.close();
         return list;
     }
+
+    /**
+     * 取消双方的关系
+     * @param starcode
+     * @param fanscode
+     */
+    public void canleAttent(String leftUser, String rightUser, String col) throws IOException {
+        //获取连接
+        Connection connection = getConnection();
+
+        //获取表
+        TableName tn = TableName.valueOf("wangyg:relation");
+        Table table = connection.getTable(tn);
+
+        //通过delete方法进行删除关注关系
+        Delete delete = new Delete(Bytes.toBytes(leftUser));
+        //删除所有的列
+        delete.addColumns(Bytes.toBytes(col), Bytes.toBytes(rightUser));
+
+        //关闭资源
+        table.close();
+        connection.close();
+    }
+
 }

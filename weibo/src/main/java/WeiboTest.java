@@ -20,20 +20,28 @@ public class WeiboTest {
             // 3) 明星（zhangsan）发布微博
             String starcode = "dilireba";
             String fanscode = "wangyg-b";
-            String content = "hello dear!!!";
+            String content1 = "hello dear!!!"+"-1";
+            String content2 = "hello dear!!!"+"-2";
+            String content3 = "hello dear!!!"+"-3";
+
+            //发送消息
+            controller.publishWeibo(starcode, content1);
+            controller.publishWeibo(starcode, content2);
+            controller.publishWeibo(starcode, content3);
+            System.out.println("微博发布成功...");
+
 
             // 4) 普通用户(lisi)关注明星(zhangsan)
             controller.attendStar(fanscode, starcode);
             System.out.println("关注明星完成...");
 
-            //先关注微博
-            controller.publishWeibo(starcode, content);
-            System.out.println("微博发布成功...");
-
             // 5) 粉丝（lisi）查询明星(zhangsan)的微博内容
-            controller.checkStarContent(starcode);
+            controller.checkStarContent(fanscode, starcode);
             // 6) 粉丝(lisi)取消关注明星（zhangsan）
+            //取消关注双方的信息，粉丝和明星两个关系都要处理
             controller.cancleAttent(fanscode,starcode);
+            //删除粉丝的收件箱的信息
+
 
         }catch (Exception e){
             e.printStackTrace();

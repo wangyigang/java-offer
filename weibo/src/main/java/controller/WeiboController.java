@@ -1,9 +1,11 @@
 package controller;
 
 
+import dao.RelationDao;
 import service.WeiboService;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * 三层架构
@@ -48,11 +50,30 @@ public class WeiboController {
         weiboService.attendStar(fanscode,starcode);
     }
 
-    public void checkStarContent(String starcode) {
+    /**
+     *  查询明星的微博信息
+     * @param starcode
+     */
+    public void checkStarContent(String fanscode,String starcode) throws  IOException {
+        //查取收件箱中的微博标识 rowkey
+        List<String> contents = weiboService.getContent(fanscode, starcode);
+        if(contents.isEmpty()){
+            System.out.println("明星"+starcode+"无最新数据...");
+        }
+        System.out.println("------------------");
+        for (String content : contents) {
+            System.out.println(content);
 
+        }
+        System.out.println("-------------------");
     }
 
-    public void cancleAttent(String fanscode, String starcode) {
-
+    /**
+     *  取消关注明星和分析
+     * @param fanscode
+     * @param starcode
+     */
+    public void cancleAttent(String fanscode, String starcode) throws IOException {
+        weiboService.cancleAttent(fanscode,starcode);
     }
 }
