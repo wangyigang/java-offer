@@ -25,7 +25,7 @@ public class MylowerConsumer {
         //3.分区
         int partition = 0;
         //4.offset
-        long offset = 100;
+        long offset = 0;//低级API中，通过设置偏移量进行重新读取数据，每次从偏移量位置处开始读取数据
 
         //1.获取leader
         String leader = getLeader(list, topic, partition);

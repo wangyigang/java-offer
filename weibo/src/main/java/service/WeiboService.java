@@ -74,7 +74,14 @@ public class WeiboService {
 
     }
 
+    /**
+     * 取消关注 spark hive kafka flume
+     * @param fanscode
+     * @param starcode
+     * @throws IOException
+     */
     public void cancleAttent(String fanscode, String starcode) throws IOException {
+        //取消关注
         relationDao.canleAttent(fanscode,starcode,"attend");
         relationDao.canleAttent(starcode,fanscode,"fans");
 
