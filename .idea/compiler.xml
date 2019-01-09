@@ -11,6 +11,7 @@
         <module name="hbase" />
         <module name="javaoffer" />
         <module name="kafka" />
+        <module name="leetcode" />
         <module name="mysink" />
         <module name="mysource" />
         <module name="udf" />
