@@ -4,6 +4,7 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.*;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
+import org.junit.Test;
 
 import java.io.IOException;
 
@@ -27,7 +28,7 @@ public class HbaseApi {
         TableName tn = TableName.valueOf("student");
 
         //判断表是否存在
-        if(admin.tableExists(tn)){ //存在将原表删除
+        if (admin.tableExists(tn)) { //存在将原表删除
             //需要将表进行禁用
             admin.disableTable(tn);
             //将表进行删除
@@ -56,7 +57,7 @@ public class HbaseApi {
         byte[] family = Bytes.toBytes("info");
         byte[] name = Bytes.toBytes("name");
         byte[] value = Bytes.toBytes("dilireba");
-        put.addColumn(family, name , value);
+        put.addColumn(family, name, value);
         table.put(put);
         System.out.println("数据保存完成..");
 
@@ -75,4 +76,5 @@ public class HbaseApi {
         table.delete(delete);
         System.out.println("删除完成...");
     }
+
 }

@@ -19,6 +19,7 @@
         <module>hase</module>
         <module>hdfs-hive</module>
         <module>weibo</module>
+        <module>java-offer</module>
 
     </modules>
 
