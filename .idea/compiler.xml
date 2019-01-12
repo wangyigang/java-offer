@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="azkaban" />
+        <module name="consumer" />
         <module name="etl" />
         <module name="hbase" />
         <module name="javaoffer" />
@@ -14,8 +15,10 @@
         <module name="leetcode" />
         <module name="mysink" />
         <module name="mysource" />
+        <module name="productlog" />
         <module name="udf" />
         <module name="weibo" />
+        <module name="zookeeper" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

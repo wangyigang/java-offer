@@ -21,6 +21,8 @@
         <module>weibo</module>
         <module>java-offer</module>
         <module>leetcode</module>
+        <module>telecom</module>
+        <module>zookeeper</module>
 
     </modules>
 

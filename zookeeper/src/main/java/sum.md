@@ -1,0 +1,9 @@
+
+#### 写数据流程
+1.client向zookeeper的server1写数据，发送一个写请求
+2.如果server1不是leader，server1会把接收到的请求进一步转交给leader,
+因为每个zookeeper的server里面有一个leader，这个leader会将写请求广播给各个
+server，比如server和server2，各个server写成功后就会通知leader
+3.当leader收到大多数server数据写成功了，那么久认为数据写成功了，写成功后，
+leader会告诉server1写数据成功
+4.server1会进一步通知client数据写成功了，==》整个写操作成功
