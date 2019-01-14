@@ -17,6 +17,7 @@
         <module name="mysource" />
         <module name="productlog" />
         <module name="udf" />
+        <module name="web" />
         <module name="weibo" />
         <module name="zookeeper" />
       </profile>
