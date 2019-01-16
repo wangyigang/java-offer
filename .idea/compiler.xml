@@ -16,6 +16,7 @@
         <module name="mysink" />
         <module name="mysource" />
         <module name="productlog" />
+        <module name="scala" />
         <module name="udf" />
         <module name="web" />
         <module name="weibo" />

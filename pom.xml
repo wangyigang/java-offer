@@ -23,6 +23,7 @@
         <module>leetcode</module>
         <module>telecom</module>
         <module>zookeeper</module>
+        <module>scala</module>
 
     </modules>
 
