@@ -1,5 +1,7 @@
 package day07Work
 
+import java.util
+
 /*
 类型参数
 1、定义一个不可变类Pair[T,S], 带一个swap方法，返回组件交换过位置的新对偶
@@ -20,6 +22,7 @@ object ScalaTest01 {
     val p = new Pair[Int,Char](97->'a')
     val unit = p.swap()
     println(unit)
+
   }
 
 }

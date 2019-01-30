@@ -5,13 +5,13 @@ package day07Work
  */
 object ScalaTest03 {
   def main(args: Array[String]): Unit = {
-    val p = new Pair
+    val p = new Pair3
 
     println( p.swap( 97 -> 'a' ) )
   }
 
 }
-class Pair[T, S] {
+class Pair3[T, S] {
   def swap[T, S](p: (T, S)) = {
     (p._2, p._1)
   }
