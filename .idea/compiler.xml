@@ -9,6 +9,7 @@
         <module name="akaka" />
         <module name="azkaban" />
         <module name="consumer" />
+        <module name="designmode" />
         <module name="etl" />
         <module name="hbase" />
         <module name="javaoffer" />

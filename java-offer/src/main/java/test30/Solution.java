@@ -8,10 +8,17 @@ package test30;
  */
 public class Solution {
     public int NumberOf1Between1AndN_Solution(int n) {
+        int count=0;
         //遍历
         for (int i = n; i > 0; --i) {
-
+            //转换成string字符串
+            String str = String.valueOf(i);
+            for (char c : str.toCharArray()) {
+                if(c == '1'){
+                    ++count;
+                }
+            }
         }
-        return 0;
+        return count;
     }
 }
