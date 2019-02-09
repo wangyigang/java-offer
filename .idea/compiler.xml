@@ -11,6 +11,7 @@
         <module name="consumer" />
         <module name="designmode" />
         <module name="etl" />
+        <module name="hadoop" />
         <module name="hbase" />
         <module name="javaoffer" />
         <module name="kafka" />

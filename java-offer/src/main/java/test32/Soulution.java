@@ -48,7 +48,7 @@ public class Soulution {
         return tmp>c? c : tmp;
     }
 
-
+    //方法一：缺点：效率偏低，
 //    public int GetUglyNumber_Solution(int index) {
 //        //考虑异常情况
 //        if (index <= 0) {
