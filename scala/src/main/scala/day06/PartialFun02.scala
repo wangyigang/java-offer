@@ -3,7 +3,7 @@ package day06
 /*
 方式一：使用filter过滤+map映射的操作进行
  */
-object PartialFun01 {
+object PartialFun02 {
   def main(args: Array[String]): Unit = {
     val list = List(1, 2, 3, 4, "abc")
     val ints = list.filter(f1).map(f2)

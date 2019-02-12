@@ -35,7 +35,6 @@ public class TestYueSeFu {
             ListNode next = cur.next;
             System.out.println("当前被删除的值为:"+cur.val);
             pre.next = next;
-            //垃圾回收
             cur = cur.next;
         }
     }

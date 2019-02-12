@@ -1,10 +1,11 @@
-package day1210.day1208;
+package Partition;
 
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
+
 @SuppressWarnings("all")
 public class FlowMapper  extends Mapper<LongWritable, Text, Text, FlowBean> {
     Text k = new Text();
