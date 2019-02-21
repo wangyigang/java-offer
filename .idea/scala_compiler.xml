@@ -7,5 +7,6 @@
         <parameter value="D:\workspace\idea_workspace\Reviewer\akaka\target/.scala_dependencies" />
       </parameters>
     </profile>
+    <profile name="Maven 2" modules="spark,sparktest" />
   </component>
 </project>

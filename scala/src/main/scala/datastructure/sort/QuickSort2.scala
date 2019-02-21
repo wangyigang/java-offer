@@ -10,9 +10,9 @@ object QuickSort {
 //    val arr = Array(-9,78,0,23,-567,70)
 
     val random = new util.Random()
-    val arr = new Array[Int](80)
-    for (i <- 0 until 80) { //循环的生成随机数
-      arr(i) = random.nextInt(80)
+    val arr = new Array[Int](80000000)
+    for (i <- 0 until 80000000) { //循环的生成随机数
+      arr(i) = random.nextInt(8000000)
     }
     println("排序前")
     val now: Date = new Date()
@@ -27,7 +27,7 @@ object QuickSort {
     val now2: Date = new Date()
     val date2 = dateFormat.format(now2)
     println("排序后时间=" + date2) //输出时间
-    println(arr.mkString(" ")) // ( 0 )// -567 -9 0 23 78 70
+//    println(arr.mkString(" ")) // ( 0 )// -567 -9 0 23 78 70
   }
 
   /*

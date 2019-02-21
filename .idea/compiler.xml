@@ -20,6 +20,7 @@
         <module name="mysource" />
         <module name="productlog" />
         <module name="scala" />
+        <module name="sparktest" />
         <module name="udf" />
         <module name="web" />
         <module name="weibo" />
@@ -27,8 +28,10 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="hdfs-hive" target="1.8" />
       <module name="hdfshive" target="1.8" />
       <module name="hfs" target="1.8" />
+      <module name="spark" target="1.8" />
       <module name="Spring" target="1.8" />
     </bytecodeTargetLevel>
   </component>

@@ -27,6 +27,7 @@
         <module>akaka</module>
         <module>designmode</module>
         <module>hadoop</module>
+        <module>sparktest</module>
 
     </modules>
 
