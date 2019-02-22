@@ -1,4 +1,4 @@
-package accumulator
+package sparkcore.accumulator
 
 import java.util
 

@@ -1,4 +1,4 @@
-package accumulator
+package sparkcore.accumulator
 
 import org.apache.spark.{SparkConf, SparkContext}
 
@@ -11,7 +11,6 @@ object TestAccumulator {
 
     // 创建Spark上下文对象
     val sc : SparkContext = new SparkContext(conf)
-
     var rdd = sc.makeRDD(1 to 5)
 //    println(rdd.reduce(_ + _))
     val sum = sc.longAccumulator("sum")

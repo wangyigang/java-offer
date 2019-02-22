@@ -1,4 +1,4 @@
-package JDBCRDDTest
+package sparkcore.JDBCRDDTest
 
 import java.sql.DriverManager
 
