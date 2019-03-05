@@ -1,4 +1,4 @@
-package HbastMR1;
+package HbaseMR1;
 
 import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.CellUtil;

@@ -1,13 +1,10 @@
-package HbastMR1;
+package HbaseMR2;
 
 import org.apache.hadoop.util.ToolRunner;
 
-public class HbaseMRTest {
+public class HbaseFileTest {
     public static void main(String[] args) throws Exception {
-
-        int run = ToolRunner.run(new MRTool(), args);// 返回状态返回值
+        int run = ToolRunner.run(new HBaseFileTool(), args);
         System.out.println(run);
-
     }
-
 }

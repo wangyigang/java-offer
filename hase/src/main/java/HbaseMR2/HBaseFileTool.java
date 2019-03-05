@@ -1,42 +1,39 @@
-package HbastMR1;
+package HbaseMR2;
 
+
+import HbaseMR1.HBaseMRReduce;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.client.Put;
-import org.apache.hadoop.hbase.client.Scan;
 import org.apache.hadoop.hbase.io.ImmutableBytesWritable;
 import org.apache.hadoop.hbase.mapreduce.TableMapReduceUtil;
 import org.apache.hadoop.mapred.JobStatus;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.util.Tool;
 
-public class MRTool implements Tool {
-
+public class HBaseFileTool implements Tool {
     @Override
     public int run(String[] args) throws Exception {
-        //获取configuration
+        //获取配置信息
         Configuration conf = new Configuration();
         //获取job
         Job job = Job.getInstance(conf);
+        //设置map端操作
+        job.setMapOutputKeyClass(ImmutableBytesWritable.class);
+        job.setMapOutputValueClass(Put.class);
+        job.setMapperClass(HbaseFileMapper.class);
+        //设置reduce端操作
 
-        Scan scan = new Scan();
-        //mapper--scan--for循环遍历，然后封装成put--hbase提供了工具类
-        TableMapReduceUtil.initTableMapperJob(
-                "fruit",
-                scan,
-                HbaseMRMapper.class,
-                ImmutableBytesWritable.class, Put.class,job);
-
-        //reudece
         TableMapReduceUtil.initTableReducerJob("fruit_mr",HBaseMRReduce.class
                 , job);
-
-        //verbose: boolean变量，是否为用户打印详细信息-- 向用户详细打印进度
-        boolean b =job.waitForCompletion(true);
+        //提交job
+        boolean b = job.waitForCompletion(true);
+        //输出结果
+        System.out.println(b);
         return b? JobStatus.State.SUCCEEDED.getValue(): JobStatus.State.FAILED.getValue();
     }
 
     /**
-     *  设置conf--目前不需要
+     *  设置配置信息--目前不需要
      * @param conf
      */
     @Override
@@ -45,7 +42,7 @@ public class MRTool implements Tool {
     }
 
     /**
-     *  获取conf--目前不需要
+     *  获取配置信息，目前不需要
      * @return
      */
     @Override
