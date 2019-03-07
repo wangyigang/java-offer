@@ -38,7 +38,5 @@ object UpdateStateByKeyTest {
     streamingContext.start()
     //等待数据
     streamingContext.awaitTermination()
-
-
   }
 }
