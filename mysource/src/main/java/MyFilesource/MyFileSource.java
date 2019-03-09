@@ -119,7 +119,7 @@ public class MyFileSource extends AbstractSource implements Configurable, EventD
                 logger.debug("read offset error", e);
             }
 
-            //如果有偏移量，就接着读，没有的话就从头读      new一个随机读取文件内容的对象
+            //如果有偏移量，就接着读，没有的话就从头读 new一个随机读取文件内容的对象
             try {
                 raf = new RandomAccessFile(filePath, "r");
                 raf.seek(offset);
