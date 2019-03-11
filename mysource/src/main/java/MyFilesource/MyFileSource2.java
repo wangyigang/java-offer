@@ -24,17 +24,29 @@ import java.util.concurrent.TimeUnit;
  * 自定义source，实现多点续传
  */
 @SuppressWarnings("all")
-public class MyFileSource extends AbstractSource implements Configurable, EventDrivenSource {
-
-    private static final Logger logger = LoggerFactory.getLogger(MyFileSource.class);
-
+public class MyFileSource2 extends AbstractSource implements Configurable, EventDrivenSource {
+    //模拟实现多点续传功能
+    //logger日志
+    private static final Logger logger = LoggerFactory.getLogger(MyFileSource2.class);
+    //文件路径
     private String filePath;
+    //offsetPath --偏移量
     private String offsetPath;
+    //interval 间隙
     private Long interval;
+    //charset;
     private String charset;
-    private ExecutorService executor;
-    private MyRunnable myRunner;
+    //juc 线程池
+    private ExecutorService executorService;
+    //内部类对象引用
+    private  FileSourceRunnable runnable;
 
+    /**
+     * 获取配置信息
+     *
+     * @param context
+     */
+    @Override
     public void configure(Context context) {
         filePath = context.getString("filePath");
         offsetPath = context.getString("offsetPath");
@@ -42,46 +54,50 @@ public class MyFileSource extends AbstractSource implements Configurable, EventD
         charset = context.getString("charset", "UTF-8");
     }
 
+    //start()方法
+    @Override
     public synchronized void start() {
-
-        //创建一个线程池       |      得到一个Channel对象
-        executor = Executors.newSingleThreadExecutor();
+        //创建一个线程池，得到一个channel对象
+        executorService = Executors.newSingleThreadExecutor();
+        //获取channel
         ChannelProcessor channelProcessor = getChannelProcessor();
+        //创建一个内部类对象
+        runnable= new FileSourceRunnable(filePath, offsetPath, interval, charset, channelProcessor);
+        //将executor放入线程池中，进行执行
+        executorService.execute(runnable);
 
-        //new一个Runnable的对象
-        myRunner = new MyRunnable(filePath, offsetPath, interval, charset, channelProcessor);
-
-        //将exector放入线程池中
-        executor.execute(myRunner);
-
+        //调用start方法
         super.start();
-
     }
 
+    /**
+     * 关闭方法
+     */
+    @Override
     public synchronized void stop() {
-        //停掉线程
-        myRunner.setFlag(false);
+        //线程停止
+        runnable.setFlag(false);
         //停掉线程池
-        executor.shutdown();
-
-        while (!executor.isTerminated()) {
+        executorService.shutdown();
+        while(!executorService.isTerminated()){
             logger.debug("Waiting for exec executor service to stop");
             try {
-                executor.awaitTermination(500, TimeUnit.MILLISECONDS);
+                //阻塞知道所有任务完成
+                executorService.awaitTermination(500, TimeUnit.MILLISECONDS);
             } catch (InterruptedException e) {
                 logger.debug("Interrupted while waiting for exec executor service "
                         + "to stop. Just exiting.");
                 Thread.currentThread().interrupt();
             }
         }
-
         super.stop();
+
     }
 
     @SuppressWarnings("all")
-    public static class MyRunnable implements Runnable {
-
-        private String filePath;
+    //新增一个内部类
+    public static class FileSourceRunnable implements Runnable {
+        private String filepath;
         private String offsetPath;
         private Long interval;
         private String charset;
@@ -92,17 +108,16 @@ public class MyFileSource extends AbstractSource implements Configurable, EventD
         private boolean flag = true;
         private RandomAccessFile raf;
 
-        public MyRunnable(String filePath, String offsetPath, Long interval, String charset, ChannelProcessor channelProcessor) {
-            this.filePath = filePath;
+        public FileSourceRunnable(String filepath, String offsetPath, Long interval, String charset, ChannelProcessor channelProcessor) {
+            this.filepath = filepath;
             this.offsetPath = offsetPath;
             this.interval = interval;
             this.charset = charset;
             this.channelProcessor = channelProcessor;
 
-            //把偏移量文件装进File对象里
+            //将偏移量文件装进file对象里
             osfile = new File(offsetPath);
-
-            //判断是否有偏移量文件,如果不存在就创建一个
+            //判断是否有偏移量文件，如果不存在就创建一个
             if (!osfile.exists()) {
                 try {
                     osfile.createNewFile();
@@ -110,55 +125,58 @@ public class MyFileSource extends AbstractSource implements Configurable, EventD
                     logger.debug("create osfile error", e);
                 }
             }
-            //存在的话，判断文件里有没有内容,先得到文件中的内容转为String
+            //如果存在，判断文件里有没有内容，先得到文件中的内容转为string
             try {
                 String offsetStr = FileUtils.readFileToString(osfile);
-                //如果有内容的话，就把内容转为Long类型,没有的话就初值
+                //判断是否有内容
                 if (offsetStr != null && !"".equals(offsetStr)) {
                     offset = Long.parseLong(offsetStr);
                 }
             } catch (IOException e) {
                 logger.debug("read offset error", e);
             }
-
-            //如果有偏移量，就接着读，没有的话就从头读 new一个随机读取文件内容的对象
+            //如果有偏移量，就接着读，没有的话从头读，new 一个随机读取文件内容的对象
             try {
-                raf = new RandomAccessFile(filePath, "r");
+                raf = new RandomAccessFile(filepath, "r");
                 raf.seek(offset);
             } catch (FileNotFoundException e) {
+                e.printStackTrace();
                 logger.debug("file not found error", e);
             } catch (IOException e) {
+                e.printStackTrace();
                 logger.debug("read offset error", e);
             }
         }
 
+        @Override
         public void run() {
-
+            //flag--定期读取文件，判断是否有新内容
             while (flag) {
-                //定期读取文件，是否有新内容
                 try {
                     String line = raf.readLine();
-                    //将数据封装进event对象
+                    //将数据封装成event对象
                     if (line != null) {
                         Event event = EventBuilder.withBody(line, Charset.forName(charset));
                         //event对象发送给channel
                         channelProcessor.processEvent(event);
-                        //获取新的偏移量，再更新偏移量
-                        offset = raf.getFilePointer();
-                        FileUtils.writeStringToFile(osfile, offset + "");
+                        //获取新的偏移量，在更新偏移量
+                        offset = raf.getFilePointer(); //获取新的品一辆
+                        FileUtils.writeStringToFile(osfile
+                                , offset + ""); //转为字符串类型
                     } else {
                         Thread.sleep(interval);
                     }
-
-
                 } catch (IOException e) {
+                    e.printStackTrace();
                     logger.debug("read line error", e);
                 } catch (InterruptedException e) {
+                    e.printStackTrace();
                     logger.debug("thread sleep error", e);
                 }
+
             }
         }
-
+        //对外提供一个接口，用于设置是否定期读取文件
         public void setFlag(boolean flag) {
             this.flag = flag;
         }
