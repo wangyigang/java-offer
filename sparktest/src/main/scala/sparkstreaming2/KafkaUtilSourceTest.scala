@@ -39,6 +39,7 @@ object KafkaUtilSourceTest {
       ),
       StorageLevel.MEMORY_ONLY //仅内存
     )
+    kafkaDStream.foreachRDD()
     val resultRdd: DStream[(String, Int)] = kafkaDStream.map(t=>{(t._2,1)}).reduceByKey(_+_)
     resultRdd.print()
     //启动

@@ -6,15 +6,12 @@ import java.util.Date
 
 object QuickSortTest {
   def main(args: Array[String]): Unit = {
-    //test1()
-    test2()
+    test1()
+//    test2()
   }
   def test1(): Unit ={
-    //    var arr = Array(1, 3, 5, 7, 9, 2, 4, 6, 8)
-    var arr = new Array[Int](20)
-    for (i <- 0 until arr.length) {
-      arr(i) = 100 - i
-    }
+    var arr = Array(1, 3, 2, 7, 9, 5,4)
+
     quickSort(arr, 0, arr.length - 1)
     println(arr.mkString(" "))
   }

@@ -26,18 +26,44 @@ public class Test01 {
             System.out.println(i);
         }
     }
-    public int[] twoSum(int[] nums, int target) {
-        //定义一个map //key存储数值，value存储下标
+    /**
+     * 要求返回下标index
+     * value只能存下标
+     */
+    public int[] twoSum(int[]nums, int target ){
         Map<Integer, Integer> map = new HashMap<>();
-        for(int i=0; i<nums.length; ++i){
-            int complement = target-nums[i];
-            if(map.containsKey(complement)){
-                return new int[]{map.get(complement), i};
+        for(int i=0; i<nums.length; i++){
+            int diff = target - nums[i];
+            if(map.containsKey(diff)){
+                return new int[]{map.get(diff), i}; //返回两个的下标
             }
-            map.put(nums[i],i);
+            map.put(nums[i], i);
         }
-        throw new RuntimeException("no two result");
+
+        throw new RuntimeException("no two element...");
     }
+
+
+
+
+
+
+
+
+
+
+//    public int[] twoSum(int[] nums, int target) {
+//        //定义一个map //key存储数值，value存储下标
+//        Map<Integer, Integer> map = new HashMap<>();
+//        for(int i=0; i<nums.length; ++i){
+//            int complement = target-nums[i];
+//            if(map.containsKey(complement)){
+//                return new int[]{map.get(complement), i};
+//            }
+//            map.put(nums[i],i);
+//        }
+//        throw new RuntimeException("no two result");
+//    }
 
     //一边找，一边插入数据--厉害
 //    public int[] twoSum(int[] nums, int target) {

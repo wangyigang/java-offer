@@ -20,22 +20,39 @@ import org.junit.Test;
  */
 public class Test09 {
     @Test
-    public void test(){
-        int x=121;
+    public void test() {
+        int x = 121;
         System.out.println(isPalindrome(x));
     }
+
     public boolean isPalindrome(int x) {
-        String num = x+"";
+        String str = x + "";
         int left = 0;
-        int right=num.length()-1;
-        while (left<right){
-            if(num.charAt(left) != num.charAt(right)){
-                return false;
-            }else{
+        int right = str.length() - 1;
+        while (left < right) {
+            if (str.charAt(left) == str.charAt(right)) {
                 left++;
                 right--;
+            } else {
+                return false;
             }
         }
         return true;
     }
+
+
+//    public boolean isPalindrome(int x) {
+//        String num = x+"";
+//        int left = 0;
+//        int right=num.length()-1;
+//        while (left<right){
+//            if(num.charAt(left) != num.charAt(right)){
+//                return false;
+//            }else{
+//                left++;
+//                right--;
+//            }
+//        }
+//        return true;
+//    }
 }
