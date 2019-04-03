@@ -19,7 +19,9 @@ object TestScala {
   }
   //
   def test14(): Unit = {
-
+    for (r <- Array(20,50,100); l<- Array(1,2,3)){
+      println("r="+r +" l="+l)
+    }
   }
 
   //并行计算测试
